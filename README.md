@@ -16,6 +16,7 @@
 ## I would recommend testing online my already deployed server. Documentation:
 Create user:
 - POST: https://chilling-fangs-03130.herokuapp.com/users
+
 {
 "userEmail":"Your email",
 "userName":"Your name",
@@ -25,9 +26,10 @@ Create user:
 
 Get the list of all users:
 - GET: https://chilling-fangs-03130.herokuapp.com/users
--
+
 Update user
 - PUT: https://chilling-fangs-03130.herokuapp.com/users/USERID
+
 {
 "userEmail":"New email",
 "userName":"New name",

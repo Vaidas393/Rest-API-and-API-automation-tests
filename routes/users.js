@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User, validateUser } = require("../models/users");
 
-//POST: CREATE A NEW BOOK
+//POST: CREATE A NEW USER
 router.post("/", async (req, res) => {
   const error = await validateUser(req.body);
   if (error.message) res.status(400).send(error.message);
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
     });
 });
 
-//GET ALL BOOKS
+//GET ALL USERS
 router.get("/", (req, res) => {
   User.find()
     .then((users) => res.send(users))
@@ -33,14 +33,14 @@ router.get("/", (req, res) => {
     });
 });
 
-//GET THE BOOK BY ID
+//GET THE USER BY ID
 router.get("/:userId", async (req, res) => {
   const user = await User.findById(req.params.userId);
   if (!user) res.status(404).send("User not found");
   res.send(user);
 });
 
-//UPDATE BOOK BASED ON ID
+//UPDATE USER BASED ON ID
 router.put("/:userId", async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     req.params.userId,
@@ -57,7 +57,7 @@ router.put("/:userId", async (req, res) => {
   res.send(updatedUser);
 });
 
-//DELETE BOOK BASED ON ID
+//DELETE USER BASED ON ID
 router.delete("/:userId", async (req, res) => {
   const user = await User.findByIdAndRemove(req.params.userId);
   if (!user) res.status(404).send("user with id not found");

@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "801c67f7-a34e-4efc-82f1-b35f5ab9b50c",
+		"name": "Ignitis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name = make(8, ' BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var lastName = make(8, ' BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var job = make(6, 'BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var email = make(4, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890');\r",
+							"\r",
+							"pm.environment.set(\"name\", name);\r",
+							"pm.environment.set(\"lastName\", lastName);\r",
+							"pm.environment.set(\"job\", job);\r",
+							"pm.environment.set(\"email\", email);\r",
+							"\r",
+							"\r",
+							" function make(length, characters) {\r",
+							"   var result           = '';\r",
+							"//   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';/\r",
+							"   var charactersLength = characters.length;\r",
+							"   for ( var i = 0; i < length; i++ ) {\r",
+							"      result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+							"   }\r",
+							"   return result;\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var data = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"updateId\", data._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userEmail\":\"{{email}}@gmail.com\",\r\n\"userName\":\"{{name}}\",\r\n\"userLastName\":\"{{lastName}}\",\r\n\"jobTitle\":\"{{job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var updatedName = make(8, ' BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var updatedLastName = make(8, ' BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var updatedJob = make(6, 'BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789');\r",
+							"var updatedEmail = make(4, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890');\r",
+							"\r",
+							"pm.environment.set(\"updatedName\", updatedName);\r",
+							"pm.environment.set(\"updatedLastName\", updatedLastName);\r",
+							"pm.environment.set(\"updatedJob\", updatedJob);\r",
+							"pm.environment.set(\"updatedEmail\", updatedEmail);\r",
+							"\r",
+							"\r",
+							" function make(length, characters) {\r",
+							"   var result           = '';\r",
+							"//   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';/\r",
+							"   var charactersLength = characters.length;\r",
+							"   for ( var i = 0; i < length; i++ ) {\r",
+							"      result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+							"   }\r",
+							"   return result;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// (prie get kabutes nes imame reiksme, o ne kintamaji)\r",
+							"var job = pm.environment.get(\"updatedJob\")\r",
+							"pm.test(\"User created\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(job);\r",
+							"});\r",
+							"\r",
+							"var data = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"updateId\", data._id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userEmail\":\"{{updatedEmail}}@gmail.com\",\r\n\"userName\":\"{{updatedName}}\",\r\n\"userLastName\":\"{{updatedLastName}}\",\r\n\"jobTitle\":\"{{updatedJob}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users/{{updateId}}",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{updateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users/{{updateId}}",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{updateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check for deleted user message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users{{updateId}}",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users{{updateId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

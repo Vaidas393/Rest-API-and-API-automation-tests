@@ -58,6 +58,12 @@ Delete user
 3) Checks if created user is in a list.
 4) If fails prints out customized message.
 
+- Update user test:
+1) Updates user with random values from given variables and given length
+2) Checks response status
+3) Checks if user was created by checking body response data for given values.
+4) If fails prints out customized message.
+
 - Delete user test:
 1) Deletes previously created user.
 2) Checks response status.

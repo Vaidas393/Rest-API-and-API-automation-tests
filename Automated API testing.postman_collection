@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "801c67f7-a34e-4efc-82f1-b35f5ab9b50c",
+		"_postman_id": "0bde3520-3b56-445e-9b0e-c31f1627d147",
 		"name": "Ignitis",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,7 +54,12 @@
 							"});\r",
 							"\r",
 							"var data = JSON.parse(responseBody);\r",
-							"pm.environment.set(\"updateId\", data._id);"
+							"pm.environment.set(\"updateId\", data._id);\r",
+							"\r",
+							"pm.test(\"User created\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.first_name).to.eql(environment.name);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -165,7 +170,7 @@
 							"\r",
 							"// (prie get kabutes nes imame reiksme, o ne kintamaji)\r",
 							"var job = pm.environment.get(\"updatedJob\")\r",
-							"pm.test(\"User created\", function () {\r",
+							"pm.test(\"Update user\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.title).to.eql(job);\r",
 							"});\r",
@@ -189,6 +194,45 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "https://chilling-fangs-03130.herokuapp.com/users/{{updateId}}",
+					"protocol": "https",
+					"host": [
+						"chilling-fangs-03130",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"{{updateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get created user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._id).to.eql(environment.updateId);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "https://chilling-fangs-03130.herokuapp.com/users/{{updateId}}",
 					"protocol": "https",

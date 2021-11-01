@@ -1,6 +1,6 @@
 # Rest API and API automation tests
  Creating Rest API with Node.js and MongoDB, automaticlly testing it.
- 
+
  # Automated Rest API testing
  Creating Rest API and write automated tests for it.
  This project is for educational purposes only. Pull request are welcome! Thank you for your cooperation!
@@ -26,6 +26,9 @@ Create user:
 
 Get the list of all users:
 - GET: https://chilling-fangs-03130.herokuapp.com/users
+
+Get specific users:
+- GET: https://chilling-fangs-03130.herokuapp.com/USERID
 
 Update user
 - PUT: https://chilling-fangs-03130.herokuapp.com/users/USERID
@@ -58,6 +61,9 @@ Delete user
 3) Checks if created user is in a list.
 4) If fails prints out customized message.
 
+- Gets specific user:
+1) Gets newly created user and checks if it is the same user which were created.
+
 - Update user test:
 1) Updates user with random values from given variables and given length
 2) Checks response status
@@ -70,5 +76,3 @@ Delete user
 3) Checks if requests contains message that user is no longer found.
 
 ### Authors: [Vaidas Pocius]( https://github.com/Vaidas393)
-
-
